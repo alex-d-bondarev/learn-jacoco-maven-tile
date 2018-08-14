@@ -9,34 +9,44 @@
   <name>learn-jacoco-maven-tile</name>
   <url>http://maven.apache.org</url>
 
+  <properties>
+    <exec.maven.plugin.version>1.1.1</exec.maven.plugin.version>
+    <jsoup.version>1.11.3</jsoup.version>
+  </properties>
+
   <dependencies>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
+      <groupId>org.jsoup</groupId>
+      <artifactId>jsoup</artifactId>
+      <version>${jsoup.version}</version>
     </dependency>
   </dependencies>
 
   <build>
     <plugins>
       <plugin>
-        <groupId>org.codehaus.gmaven</groupId>
-        <artifactId>groovy-maven-plugin</artifactId>
-        <version>2.0</version>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>${exec.maven.plugin.version}</version>
         <executions>
           <execution>
-            <phase>validate</phase>
+            <phase>verify</phase>
             <goals>
-              <goal>execute</goal>
+              <goal>java</goal>
             </goals>
             <configuration>
-              <source>
-                log.info('Test message: {}', 'This is learn-jacoco-maven-tile speaking')
-              </source>
+              <mainClass>com.learn.tile.JacocoCoverage</mainClass>
             </configuration>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
       </plugin>
     </plugins>
   </build>
