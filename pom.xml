@@ -21,17 +21,19 @@
   <build>
     <plugins>
       <plugin>
-        <artifactId>maven-antrun-plugin</artifactId>
+        <groupId>org.codehaus.gmaven</groupId>
+        <artifactId>groovy-maven-plugin</artifactId>
+        <version>2.0</version>
         <executions>
           <execution>
-            <phase>generate-resources</phase>
+            <phase>validate</phase>
             <goals>
-              <goal>run</goal>
+              <goal>execute</goal>
             </goals>
             <configuration>
-              <tasks>
-                <echo>This is learn-jacoco-maven-tile</echo>
-              </tasks>
+              <source>
+                log.info('Test message: {}', 'This is learn-jacoco-maven-tile speaking')
+              </source>
             </configuration>
           </execution>
         </executions>
